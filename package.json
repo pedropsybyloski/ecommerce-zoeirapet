@@ -4,10 +4,10 @@
   "description": "E-commerce de produtos do ramo pet",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "dev": "node server.js",
     "server": "nodemon server.js",
     "client": "cd client && npm run start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "start": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",

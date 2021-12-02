@@ -3,7 +3,6 @@ import { useParams, Link } from 'react-router-dom';
 import { GlobalState } from '../../../GlobalState';
 import ProductItem from '../utils/productItem/ProductItem';
 
-
 function DetailProduct() {
     const params = useParams();
     const state = useContext(GlobalState);
@@ -12,7 +11,6 @@ function DetailProduct() {
 
     useEffect(() => {
         console.log("re render");
-        console.log(products.images);
         if (params.id) {
             products.forEach(product => {
                 if (product.id == params.id) setDetailProduct(product);
