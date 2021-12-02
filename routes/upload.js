@@ -11,7 +11,7 @@ cloudinary.config({
 });
 
 // Enviar arquivo que só o admin pode usar
-router.post('/upload', (req, res) =>{ //auth, authAdmin,
+router.post('/upload',auth, authAdmin, (req, res) =>{
     try {
         console.log(req.files);
         if(!req.files || Object.keys(req.files).length === 0){
@@ -44,7 +44,7 @@ router.post('/upload', (req, res) =>{ //auth, authAdmin,
 });
 
 // deletar arquivo: só admin
-router.post('/destroy', (req, res) =>{//auth, authAdmin,
+router.post('/destroy', auth, authAdmin,(req, res) =>{//auth, authAdmin,
     try {
         const {public_id} = req.body;
         console.log(public_id);
