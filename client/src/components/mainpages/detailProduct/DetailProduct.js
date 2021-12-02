@@ -9,8 +9,10 @@ function DetailProduct() {
     const state = useContext(GlobalState);
     const [products] = state.productsAPI.products;
     const [detailProduct, setDetailProduct] = useState([]);
+
     useEffect(() => {
         console.log("re render");
+        console.log(products.images);
         if (params.id) {
             products.forEach(product => {
                 if (product.id == params.id) setDetailProduct(product);
@@ -18,7 +20,9 @@ function DetailProduct() {
         }
     }, [params.id, products]);
 
-    if (detailProduct.length === 0) return null;
+    if (detailProduct.length === 0) {
+        return null;
+    }
 
     return (
         <>
