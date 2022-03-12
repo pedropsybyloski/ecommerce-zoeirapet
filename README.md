@@ -21,3 +21,13 @@ npm run start
 ```
 
 Para qualquer dúvida sobre os comandos citados no item 1 e 2, dentro da raiz, 'ecoomerce-zoeirapet' e 'ecoomerce-zoeirapet/client', tem os arquivos **package.json** com a propriedade "scripts" para cada uma das pastas.
+
+## Screenshots
+### Admin route
+![Admin route](https://user-images.githubusercontent.com/50676275/158037938-34a49eed-b0e9-4a58-935b-19cbc45dcd49.png)
+
+### No Login
+![No Login](https://user-images.githubusercontent.com/50676275/158038078-0b1cab5c-3a53-4954-8168-d0129414b169.png)
+
+### User Login
+![User Login](https://user-images.githubusercontent.com/50676275/158038094-0da35f36-9a1f-453a-b2f7-1700e6ea55e6.png)
