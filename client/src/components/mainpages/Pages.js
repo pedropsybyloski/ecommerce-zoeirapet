@@ -9,6 +9,7 @@ import DetailProduct from './detailProduct/DetailProduct';
 import {GlobalState} from '../../GlobalState'; 
 import Categories from './categories/Categories';
 import CreateProduct from './createProduct/CreateProduct';
+import Perfil from './profile/Profile';
 
 function Pages() {
     const state = useContext(GlobalState);
@@ -26,6 +27,7 @@ function Pages() {
             <Route path="/cart" exact element={<Cart></Cart>} />
             <Route path="*" exact element={<NotFound></NotFound>} />
             <Route path="/edit_product/:id" exact element={isAdmin ? <CreateProduct></CreateProduct> : <NotFound></NotFound>} />
+            <Route path="/perfil" exact element={isLogged ? <Perfil/> : <NotFound/>} />
         </Routes>
     );
 }

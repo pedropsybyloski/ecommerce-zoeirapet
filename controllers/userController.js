@@ -6,15 +6,18 @@ const jwt = require("jsonwebtoken");
 const userController = {
     register: async (req, res) =>{
         try {
-            const {name, email, password} = req.body;
+            const {name, email, password, repeatPassword} = req.body;
 
-            const user = await Users.findOne({where: {email}});
+            const user = await Users.findOne({where: {email, password}});
 
             if (user) {
                 return res.status(400).json({msg: "O Email já existe."});
             }
             if (password.length < 6) {
                 return res.status(400).json({msg: "A senha tem que ter mais que 6 caracteres."});
+            }
+            if(repeatPassword !== password){
+                return res.status(400).json({msg: "As senhas estão diferentes."})
             }
 
             //Encriptação de senha
@@ -53,10 +56,12 @@ const userController = {
                 const accesstoken = createAccessToken({id: users.id});
                 res.json({users, accesstoken});
             });
-            res.json({rf_token});
+
+            //res.json({rf_token});
+            res.end();
         } catch (error) {
             console.log(error);
-            return res.status(500).json({msg: error});
+            res.status(500).json({msg: error});
         }
     },
     login: async (req, res) =>{
@@ -107,13 +112,13 @@ const userController = {
             const user = await Users.findOne({where: {id: _id}, attributes:{exclude: ['password']}}); // order:[['id', 'DESC']]
             
             if(!user) {
-                return res.status(400).json({msg: "Usuario não existe."});
+                return res.status(400);
             }
 
-            res.json(user);
+            return res.json(user);
 
         } catch (err) {
-            return res.status(500).json({msg: err.message});
+            return res.status(500);
         }
     },
     addCart: async (req, res) =>{

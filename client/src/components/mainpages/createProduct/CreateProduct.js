@@ -2,7 +2,7 @@ import React, {useState, useContext, useEffect} from 'react';
 import axios from 'axios';
 import {GlobalState} from '../../../GlobalState';
 import Loading from '../utils/loading/Loading';
-import {useHistory, useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 const initialState = {
     product_id: '',
@@ -22,9 +22,11 @@ function CreateProduct() {
     const [loading, setLoading] = useState(false);
     const [isAdmin] = state.userAPI.isAdmin;
     const [token] = state.token;
+    const navigate = useNavigate();
     const param = useParams();
     const [products] = state.productsAPI.products;
     const [onEdit, setOnEdit] = useState(false);
+    const [callback, setCallback] = state.productsAPI.callback;
 
     useEffect(() => {
         if(param.id){
@@ -91,7 +93,7 @@ function CreateProduct() {
     }
 
     const handleSubmit = async e =>{
-        e.preventDefault()
+        e.preventDefault();
         try {
             if(!isAdmin) return alert("Você não é Admin");
             if(!images) return alert("Nenhuma imagem enviada");
@@ -101,14 +103,18 @@ function CreateProduct() {
                     headers: {Authorization: token}
                 }).then((req, res)=>{
                     alert("Produto atualizado com sucesso.");
+                    navigate('/');
                 })
             }else{
                 await axios.post('/api/products', {...product, images}, {
                     headers: {Authorization: token}
                 })
             }
+            setCallback(!callback);
+            navigate("/");
+
         } catch (err) {
-            alert(err.response.data.msg);
+            alert(err);
         }
     }
 
@@ -145,7 +151,7 @@ function CreateProduct() {
 
                 <div className="row">
                     <label htmlFor="price">Valor: </label>
-                    <input type="number" name="price" id="price" required
+                    <input type="number" name="price" placeholder='0' step='0.1' id="price" required
                     value={product.price} onChange={handleChangeInput} />
                 </div>
 

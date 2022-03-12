@@ -1,8 +1,5 @@
 const Products = require('../models/productModel');
 
-// Filtragem, Ordenação e paginação
-// fazer mais tarde
-
 class APIfeatures {
     constructor(query, queryString) {
         this.query = query;
@@ -44,7 +41,7 @@ class APIfeatures {
         //this.query = await Products.findAll();
         this.queryString = query;
         const page = this.queryString.page * 1 || 1;
-        const limit = this.queryString.limit * 1 || 8;
+        const limit = this.queryString.limit * 1 || 15;
         const skiping = (page - 1) * limit;
         this.query = await Products.findAll({offset: skiping, limit: limit});
 

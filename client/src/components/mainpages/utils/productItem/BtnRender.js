@@ -12,7 +12,7 @@ function BtnRender({ product, deleteProduct }) {
             {
                 isAdmin ?
                     <>
-                        <Link to="#" id="btn_buy" className="exclude" >
+                        <Link id="btn_buy" to="/" className="exclude" onClick={deleteProduct}>
                             Excluir
                         </Link>
                         <Link id="btn_view" to={`/edit_product/${product.id}`}>

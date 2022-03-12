@@ -10,6 +10,7 @@ function Header() {
     const state = useContext(GlobalState);
     const [isLogged] = state.userAPI.isLogged;
     const [isAdmin] = state.userAPI.isAdmin;
+    const [name] = state.userAPI.name;
     const [cart] = state.userAPI.cart;
     const [menu, setMenu] = useState(false);
     const styleMenu = {left: menu ? 0 : "-100%"}; 
@@ -35,6 +36,7 @@ function Header() {
         return (
             <>
                 <li><Link to="/history">Historico</Link></li>
+                <li><Link to='/perfil'>Perfil</Link></li>
                 <li><Link to="/" onClick={logoutUser} >Logout</Link></li> 
             </>
         )
@@ -47,7 +49,8 @@ function Header() {
             </div>
 
             <div className="logo">
-                <h1><Link to="/">{isAdmin ? 'Admin' : 'Zoeirapet'}</Link></h1>
+                {isLogged ? 
+                <h1><Link to="/">{isAdmin ? name : name}</Link></h1> : <h1><Link to="/">{!isAdmin ? "Zoeirapet": name}</Link></h1>}
             </div>
 
             <ul>

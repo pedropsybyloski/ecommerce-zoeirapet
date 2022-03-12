@@ -10,10 +10,11 @@ function DetailProduct() {
     const [detailProduct, setDetailProduct] = useState([]);
 
     useEffect(() => {
-        console.log("re render");
         if (params.id) {
             products.forEach(product => {
-                if (product.id == params.id) setDetailProduct(product);
+                if (product.id.toString() === params.id){
+                    setDetailProduct(product);
+                };
             });
         }
     }, [params.id, products]);
@@ -45,6 +46,7 @@ function DetailProduct() {
                 <div className="products">
                     {
                         products.map(product => {
+                            console.log(product)
                             return product.category === detailProduct.category ? <ProductItem key={product.id} product={product} /> : null
                         })
                     }

@@ -26,7 +26,33 @@ const User = sequelize.define('User', {
         allowNull: false,
         type: DataTypes.JSON,
         defaultValue: []
+    },
+    cep: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: ''
+    }, 
+    bairro: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: ''
+    },
+    cidade: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: ''
+    },
+    estado: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: ''
+    }, 
+    numero: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: ''
     }
+    //cep, rua, numero, bairro, cidade, estado
 },
 {
     sequelize: sequelize,
