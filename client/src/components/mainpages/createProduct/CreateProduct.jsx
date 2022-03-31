@@ -8,10 +8,11 @@ const initialState = {
     product_id: '',
     title: '',
     price: 0,
-    description: 'Criação de produto rota ADMIN.',
-    content: 'Criação de produtos rota ADMIN',
+    description: '',
+    content: '',
     category: '',
-    id: ''
+    id: '',
+    UserId: ''
 }
 
 function CreateProduct() {
@@ -32,7 +33,7 @@ function CreateProduct() {
         if(param.id){
             setOnEdit(true);
             products.forEach(product => {
-                if(product.id == param.id) {
+                if(product.id.toString() === param.id) {
                     setProduct(product);
                     setImages(product.images);
                 }

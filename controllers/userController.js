@@ -2,6 +2,7 @@ const Users = require("../models/userModel");
 const connection = require("../DB/mysql");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Cart = require("../models/cartModel");
 
 const userController = {
     register: async (req, res) =>{
@@ -123,20 +124,58 @@ const userController = {
     },
     addCart: async (req, res) =>{
         try {
-            const user = await Users.findOne({where:{id: req.user.id}});
+            //const user = await Users.findOne({where: {id: req.user.id}});
+            
+            /* if(!user) {
+                return res.status(400).json({msg: "Usuario não existe."});
+            } */
+            
+            //const cart = await Cart.create({where: {UserId: req.user.id}});
+            res.json({user: user, product: "cart"});
+            /* const user = await Users.findOne({where:{id: req.user.id}});
             if(!user) {
                 return res.status(400).json({msg: "Usuario não existe."});
             }
 
-            const cart = await Users.create({where: {id: req.user.id}});
-            cart.set({cart: JSON.stringify(req.body.cart)});
-            await cart.save();
+            const cart = await Cart.create({where: {UserId: req.user.id}});
+            //cart.set({cart: JSON.stringify(req.body.cart)});
+            console.log(req.user.id);
+            //await cart.save();
 
-            return res.json({msg: "Adicionado ao carrinho"});
+            return res.json({msg: "Adicionado ao carrinho"}); */
         } catch (err) {
-            return res.status(500).json({msg: err.message});
+            return res.status(400).json({msg: err.message});
         }
     },
+    updateUser: async (req, res) => {
+        try {
+            const { name, cep, bairro, cidade, estado, numero } = req.body;
+            
+            await Users.update({ name, cep, bairro, cidade, estado, numero }, { where: { id: req.user.id } });
+
+            res.json({ msg: "Usuário atualizado com sucesso." });
+
+        } catch (err) {
+            return res.status(500).json({ msg: err.message })
+        }
+    },
+    update: async (req, res) =>{
+        try {
+            const { name, cep, bairro, cidade, estado, numero } = req.body;
+
+            const user = await Users.findOne({where: {id: req.user.id}});
+                        
+            //const newUser = await Users.create({name, cep, bairro, cidade, estado, numero});
+
+            /* await newUser.save(); */
+            
+            res.end();
+        } 
+        catch (error) {
+            console.log(error);
+            return res.status(500).json({"Erro: ": error});
+        }
+    }
 }
 
 function createAccessToken (user){

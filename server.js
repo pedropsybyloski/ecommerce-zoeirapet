@@ -1,5 +1,4 @@
 const express = require("express");
-const {Sequelize} = require("sequelize");
 const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -11,6 +10,11 @@ const userRouter = require("./routes/userRouter");
 const categoryRouter = require("./routes/categoryRouter");
 const uploadRouter = require("./routes/upload");
 const productRouter = require("./routes/productRouter");
+const sequelize = require('./DB/mysql');
+const Product = require('./models/productModel');
+const CartItem = require('./models/cartItemModel');
+const Cart = require('./models/cartModel');
+const User = require('./models/userModel');
 const app = express();
 
 app.use(express.json());
@@ -37,3 +41,10 @@ app.use((req, res)=>{
 app.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`);
 });
+
+Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
+User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsTo(User);
+Cart.belongsToMany(Product, {through: CartItem});
+Product.belongsToMany(Cart, {through: CartItem});

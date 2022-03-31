@@ -69,7 +69,9 @@ const productController = {
     createProduct: async (req, res) => {
         try {
             const { product_id, title, price, description, content, images, category } = req.body;
+            const UserId = req.user.id;
 
+            console.log(req.user.id, UserId)
             if (!images) {
                 return res.status(400).json({ msg: "Nenhuma imagem enviada." });
             }
@@ -78,7 +80,7 @@ const productController = {
             if (product) {
                 return res.status(400).json({ msg: "Produto já existente." });
             }
-            const newProduct = await Products.create({ product_id, title: title.toLowerCase(), price, description, content, images, category });
+            const newProduct = await Products.create({ product_id, title: title.toLowerCase(), price, description, content, images, category, UserId: UserId});
 
             await newProduct.save();
             res.json({ msg: "Produto criado com sucesso!" });

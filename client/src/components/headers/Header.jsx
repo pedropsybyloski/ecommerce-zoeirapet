@@ -11,6 +11,7 @@ function Header() {
     const [isLogged] = state.userAPI.isLogged;
     const [isAdmin] = state.userAPI.isAdmin;
     const [name] = state.userAPI.name;
+    const [id] = state.userAPI.id;
     const [cart] = state.userAPI.cart;
     const [menu, setMenu] = useState(false);
     const styleMenu = {left: menu ? 0 : "-100%"}; 
@@ -36,7 +37,7 @@ function Header() {
         return (
             <>
                 <li><Link to="/history">Historico</Link></li>
-                <li><Link to='/perfil'>Perfil</Link></li>
+                <li><Link to={`/profile/${id}`}>Perfil</Link></li>
                 <li><Link to="/" onClick={logoutUser} >Logout</Link></li> 
             </>
         )
@@ -64,11 +65,18 @@ function Header() {
                     <img src={Close} alt="" width="30" className="menu" />
                 </li>
             </ul>
-
-            {isAdmin ? '' : <div className="cart-icon"> <span>{cart.length}</span> <Link to="/cart"> <img src={Cart} alt="" width="30" /> </Link> </div>}
+            
+            {isAdmin ? '' : <div className="cart-icon"> <span>{cart}</span> <Link to="/cart"> <img src={Cart} alt="" width="30" /> </Link> </div>}
+            {/* 1) */}
 
         </header>
     );
 }
 
 export default Header;
+
+/* 
+
+  1)  {isAdmin ? '' : <div className="cart-icon"> <span>{cart.length}</span> <Link to="/cart"> <img src={Cart} alt="" width="30" /> </Link> </div>}
+
+*/

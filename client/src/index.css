@@ -33,6 +33,9 @@ button{
   cursor: pointer;
 }
 
+/*---------------- Profile ------------*/
+@import url("./components/mainpages/profile/profile.css");
+
 /*---------------- Header ------------*/
 @import url("./components/headers/header.css");
 
@@ -47,7 +50,6 @@ button{
 
 /* ------------ Cart ------------------- */
 @import url("./components/mainpages/cart/cart.css");
-
 
 /* ------------------ Categories ------------------ */
 @import url("./components/mainpages/categories/categories.css");

@@ -21,11 +21,6 @@ const User = sequelize.define('User', {
         allowNull: false,
         type: DataTypes.INTEGER,
         defaultValue: 0,
-    }, 
-    cart:{
-        allowNull: false,
-        type: DataTypes.JSON,
-        defaultValue: []
     },
     cep: {
         allowNull: false,
@@ -52,7 +47,6 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         defaultValue: ''
     }
-    //cep, rua, numero, bairro, cidade, estado
 },
 {
     sequelize: sequelize,

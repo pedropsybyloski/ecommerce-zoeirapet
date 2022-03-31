@@ -27,7 +27,7 @@ function Pages() {
             <Route path="/cart" exact element={<Cart></Cart>} />
             <Route path="*" exact element={<NotFound></NotFound>} />
             <Route path="/edit_product/:id" exact element={isAdmin ? <CreateProduct></CreateProduct> : <NotFound></NotFound>} />
-            <Route path="/perfil" exact element={isLogged ? <Perfil/> : <NotFound/>} />
+            <Route path="/profile/:id" exact element={isLogged ? <Perfil/> : <NotFound/>} />
         </Routes>
     );
 }
