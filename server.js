@@ -45,9 +45,9 @@ if(process.env.NODE_ENV === 'production'){
     })
 }
 
-app.listen(PORT, ()=>{
+app.listen(process.env.PORT || 8080, ()=>{
     console.log(`Server running on port ${PORT}`);
-});
+})
 
 Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Product);
