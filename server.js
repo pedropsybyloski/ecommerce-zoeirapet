@@ -30,13 +30,13 @@ app.use('/api', categoryRouter);
 app.use('/api', uploadRouter);
 app.use('/api', productRouter);
 
-app.get("/", (req, res)=>{
+/* app.get("/", (req, res)=>{
     res.json({msg: "Servidor está rodando!"});
 });
 
 app.use((req, res)=>{
     res.status(404).send("Pagina não encontrada");
-});
+}); */
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
