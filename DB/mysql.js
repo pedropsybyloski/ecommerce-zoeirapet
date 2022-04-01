@@ -2,7 +2,13 @@ const {Sequelize} = require("sequelize");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const sequelize = new Sequelize(
+let sequelize;
+
+/* if(process.env.CLEARDB_DATABASE_URL){
+    sequelize = new Sequelize(process.env.CLEARDB_DATABASE_URL);
+} else{
+} */
+sequelize = new Sequelize(
     process.env.MYSQL_DB,
     process.env.MYSQL_USER,
     process.env.MYSQL_PASSWORD,
