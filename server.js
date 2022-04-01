@@ -34,9 +34,9 @@ app.use('/api', productRouter);
     res.json({msg: "Servidor está rodando!"});
 }); */
 
-app.use((req, res)=>{
+/* app.use((req, res)=>{
     res.status(404).send("Pagina não encontrada");
-});
+}); */
 
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
